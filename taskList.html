@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script>
+      function deleteThis() {
+        console.log(this.innerHTML);
+      }
+      document.addEventListener("DOMContentLoaded", function() {
+        document
+          .querySelector("#addItem")
+          .addEventListener("click", function() {
+            let tl = document.querySelector("#taskList");
+            let item = document.createElement("input");
+            let del = document.createElement("span");
+            del.onclick = function() {
+              this.parentNode.parentNode.removeChild(
+                this.parentNode.previousSibling
+              );
+              this.parentNode.parentNode.removeChild(this.parentNode);
+            };
+            del.innerText = "X";
+            del.style.color = "red";
+            del.style.cursor = "pointer";
+            item.type = "checkbox";
+
+            let label = document.createElement("label");
+            label.htmlFor = "id";
+            label.appendChild(
+              document.createTextNode(document.querySelector("#item").value)
+            );
+            label.appendChild(del);
+            tl.appendChild(item);
+            tl.appendChild(label);
+            tl.appendChild(document.createElement("br"));
+          });
+      });
+    </script>
+  </head>
+  <body>
+    <label for="item">Enter Item</label
+    ><input type="text" name="item" id="item" /><button id="addItem">
+      ADD
+    </button>
+    <div id="taskList"></div>
+    <ul>
+      <li>list item 1</li>
+      <li>list item 2</li>
+      <li>list item 3</li>
+      <li>list item 4</li>
+      <li>list item 5</li>
+    </ul>
+  </body>
+</html>
